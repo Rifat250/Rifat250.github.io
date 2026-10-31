@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maksud-Ur-Rashid — Data Analytics Portfolio</title>
+<meta name="description" content="Maksud-Ur-Rashid — Mathematics graduate building dashboards, KPI scorecards and MIS reports with Excel, Power BI, SQL and Python.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b1120; --bg2:#111a2e; --card:#141f36; --line:#22304d;
+    --text:#e6ecf7; --muted:#94a3c0; --accent:#38bdf8; --accent2:#a78bfa; --green:#34d399;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+  section{padding:90px 0}
+  .eyebrow{font-family:"JetBrains Mono",monospace;color:var(--accent);font-size:.85rem;letter-spacing:.08em;text-transform:uppercase}
+  h2{font-size:clamp(1.7rem,3.5vw,2.4rem);font-weight:800;margin:6px 0 10px}
+  .lead{color:var(--muted);max-width:640px}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:50;background:rgba(11,17,32,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700}
+  .logo{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#0b1120;font-weight:800}
+  .brand small{display:block;color:var(--muted);font-weight:500;font-size:.75rem;line-height:1}
+  .links{display:flex;gap:22px;font-size:.92rem;color:var(--muted)}
+  .links a:hover{color:var(--text)}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:10px;font-weight:600;font-size:.92rem;transition:.2s}
+  .btn-primary{background:var(--accent);color:#0b1120}
+  .btn-primary:hover{background:#7dd3fc}
+  .btn-ghost{border:1px solid var(--line);color:var(--text)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+  .menu-btn{display:none;background:none;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:6px 10px;font-size:1.1rem;cursor:pointer}
+
+  /* HERO */
+  .hero{padding:90px 0 70px;position:relative;overflow:hidden}
+  .hero::before{content:"";position:absolute;width:520px;height:520px;right:-120px;top:-120px;background:radial-gradient(circle,rgba(56,189,248,.18),transparent 65%)}
+  .hero .wrap{display:grid;grid-template-columns:1.4fr 1fr;gap:50px;align-items:center;position:relative}
+  .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid var(--line);border-radius:999px;font-size:.82rem;color:var(--muted)}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(52,211,153,.2)}
+  .hero h1{font-size:clamp(2.2rem,5.5vw,3.6rem);line-height:1.1;font-weight:800;margin:18px 0 14px}
+  .hero h1 span{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p{color:var(--muted);font-size:1.08rem;max-width:560px}
+  .cta{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0 22px}
+  .socials{display:flex;gap:10px}
+  .socials a{width:42px;height:42px;border:1px solid var(--line);border-radius:10px;display:grid;place-items:center;color:var(--muted);transition:.2s}
+  .socials a:hover{color:var(--accent);border-color:var(--accent)}
+  .socials svg{width:19px;height:19px;fill:currentColor}
+  .photo-card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px;text-align:center}
+  .photo{width:100%;aspect-ratio:1;border-radius:16px;background:linear-gradient(135deg,#1e3a5f,#312e81);display:grid;place-items:center;font-size:4.5rem;font-weight:800;color:rgba(255,255,255,.85);overflow:hidden}
+  .photo img{width:100%;height:100%;object-fit:cover}
+  .photo-card h3{margin-top:14px}
+  .photo-card p{color:var(--muted);font-size:.9rem}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
+  .stats div{background:var(--bg2);border-radius:10px;padding:10px 4px}
+  .stats b{display:block;font-size:1.3rem;color:var(--accent)}
+  .stats span{font-size:.72rem;color:var(--muted)}
+
+  /* SKILLS */
+  .grid{display:grid;gap:18px;margin-top:40px}
+  .skills{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;transition:.25s}
+  .card:hover{border-color:rgba(56,189,248,.5);transform:translateY(-3px)}
+  .icon{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-size:1.4rem;background:rgba(56,189,248,.12);margin-bottom:14px}
+  .card h3{font-size:1.1rem;margin-bottom:6px}
+  .card p{color:var(--muted);font-size:.92rem}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+  .tag{font-size:.75rem;padding:4px 10px;border-radius:999px;background:var(--bg2);border:1px solid var(--line);color:var(--muted)}
+
+  /* PROJECTS */
+  .alt{background:var(--bg2)}
+  .filters{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+  .filters button{background:transparent;border:1px solid var(--line);color:var(--muted);padding:8px 16px;border-radius:999px;cursor:pointer;font:inherit;font-size:.88rem}
+  .filters button.active{background:var(--accent);color:#0b1120;border-color:var(--accent);font-weight:600}
+  .projects{grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
+  .proj{display:flex;flex-direction:column;padding:0;overflow:hidden}
+  .thumb{height:170px;display:grid;place-items:center;font-size:3rem;border-bottom:1px solid var(--line);overflow:hidden}
+  .thumb img{width:100%;height:100%;object-fit:cover;object-position:top}
+  .proj .body{padding:22px;display:flex;flex-direction:column;flex:1}
+  .tool{font-family:"JetBrains Mono",monospace;font-size:.75rem;color:var(--accent)}
+  .proj h3{margin:6px 0 8px}
+  .proj ul{margin:10px 0 0 18px;color:var(--muted);font-size:.88rem}
+  .proj .actions{margin-top:auto;padding-top:18px;display:flex;gap:10px}
+  .proj .actions a{font-size:.85rem;font-weight:600;color:var(--accent)}
+  .proj .actions a:hover{text-decoration:underline}
+  .cert-thumb{background:#fff}
+  .cert-thumb img{object-fit:contain;object-position:center}
+  .cred{font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--muted);margin-top:8px;word-break:break-all}
+
+  /* PROCESS */
+  .process{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+  .step-num{font-family:"JetBrains Mono",monospace;color:var(--accent2);font-size:.9rem}
+
+  /* ABOUT */
+  .about{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;margin-top:30px}
+  .about p{color:var(--muted);margin-bottom:14px}
+  .timeline{border-left:2px solid var(--line);padding-left:22px}
+  .tl{position:relative;margin-bottom:26px}
+  .tl::before{content:"";position:absolute;left:-29px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(56,189,248,.2)}
+  .tl .yr{font-family:"JetBrains Mono",monospace;font-size:.8rem;color:var(--accent)}
+  .tl h4{margin:2px 0}
+  .tl p{color:var(--muted);font-size:.9rem;margin:0}
+
+  /* CONTACT */
+  .contact{text-align:center}
+  .contact .lead{margin:0 auto}
+  .contact .cta{justify-content:center}
+  footer{border-top:1px solid var(--line);padding:26px 0;text-align:center;color:var(--muted);font-size:.85rem}
+
+  .reveal{opacity:0;transform:translateY(20px);transition:.6s ease}
+  .reveal.show{opacity:1;transform:none}
+
+  @media (max-width:860px){
+    .links{display:none;position:absolute;top:66px;left:0;right:0;flex-direction:column;background:var(--bg);padding:20px;border-bottom:1px solid var(--line)}
+    .links.open{display:flex}
+    .menu-btn{display:block}
+    nav .btn{display:none}
+    .hero .wrap,.about{grid-template-columns:1fr}
+    .photo-card{max-width:340px}
+    .projects{grid-template-columns:1fr}
+    section{padding:70px 0}
+  }
+</style>
+</head>
+<body>
+
+<!-- =========================================================
+     ✏️ এখানে আপনার তথ্য বসান (শুধু এই অংশ এডিট করলেই হবে)
+     ========================================================= -->
+<script>
+const ME = {
+  name: "Maksud-Ur-Rashid",
+  initials: "MR",
+  location: "Dhaka, Bangladesh",
+  email: "murashid11@gmail.com",
+  linkedin: "https://www.linkedin.com/in/maksud-ur-rashid",
+  github: "https://github.com/Rifat250",
+  whatsapp: "8801701007259",
+  cv: "Maksud-Ur-Rashid-CV.pdf",
+  photo: "photo.jpg",
+  repo: "https://github.com/Rifat250/Data-Analytics-Projects"
+};
+
+// সার্টিফিকেট যোগ করতে এই লিস্টে লিখুন: { name:"...", org:"...", year:"2025", link:"" }
+const CERTS = [
+  { name:"Data Analyst Job Ready Bootcamp", org:"Data Solution 360", year:"Aug 2025", id:"DS3602414MUR40",
+    desc:"5-month bootcamp covering SQL, Excel, Power BI, Python, data cleaning and dashboard development.", img:"certificates/ds360-bootcamp.jpg" },
+  { name:"Data Literacy Foundations", org:"Maven Analytics", year:"Nov 2025", id:"165509331",
+    desc:"Data interpretation, analytical thinking and data-driven decision-making.", img:"certificates/maven-data-literacy.jpg" },
+  { name:"SQL (Basic)", org:"HackerRank", year:"Dec 2025", id:"661AAAABAA2E",
+    desc:"Queries, table relationships, joins, filtering, sorting and aggregate functions.", img:"certificates/hackerrank-sql-basic.jpg" },
+  { name:"SQL (Intermediate)", org:"HackerRank", year:"Dec 2025", id:"4D7AC4C9C89C",
+    desc:"Complex joins, unions, subqueries and advanced SQL techniques.", img:"certificates/hackerrank-sql-intermediate.jpg" },
+  { name:"Zero to Advanced SQL with BigQuery & Metabase", org:"Interactive Cares", year:"", id:"c3a07756-76fc-428d-be5f-509d3398ea19",
+    desc:"Live course: Snowflake, PostgreSQL, BigQuery, Supabase, Metabase and data modelling.", img:"certificates/interactive-cares-sql.jpg" },
+  { name:"Financial Analysis in Power BI", org:"DataCamp", year:"Aug 2026", id:"#49,180,081",
+    desc:"Financial dashboards, scenario & sensitivity analysis, NPV, IRR and DAX forecasting.", img:"certificates/datacamp-financial-analysis-powerbi.jpg" },
+  { name:"Introduction to Workflow Automation with n8n", org:"DataCamp", year:"Sep 2026", id:"49782508",
+    desc:"Trigger nodes, If/Switch/Merge logic and LLM-powered AI agent integration.", img:"certificates/datacamp-n8n-automation.jpg" },
+];
+
+const PROJECTS = [
+  { title:"Adventure Works Sales Analysis", tool:"Power BI · Power Query · DAX", cat:"Power BI", emoji:"🚲",
+    desc:"4-page management dashboard for a bike and accessories retailer (2020–2022).",
+    points:["Tracks $24.91M revenue, $10.46M profit, 25K orders and a 2.17% return rate",
+            "Star-schema model: 2 fact tables (56K+ sales rows) and 6 dimension tables",
+            "27 DAX measures, what-if price slider, map, product drill-through"],
+    link:"https://github.com/Rifat250/Data-Analytics-Projects/tree/main/Power%20BI%20Projects/Adventure%20Works%20Sales%20Dashboard", img:"images/adventure-works.jpg" },
+  { title:"Hospital Emergency Room Analysis", tool:"Power BI · DAX", cat:"Power BI", emoji:"🏥",
+    desc:"Patient flow, waiting time and satisfaction analysis of 9,216 ER records.",
+    points:["35.3 min average waiting time, tracked by department",
+            "Monday (1,377 visits) and 11 PM found as peak demand points",
+            "Field parameters and time-intelligence for MoM comparison"],
+    link:"https://github.com/Rifat250/hospital-emergency-room-analysis-powerbi", img:"images/hospital-er.jpg" },
+  { title:"Healthcare Provider Analytics", tool:"Power BI · DAX", cat:"Power BI", emoji:"🩺",
+    desc:"Billing, treatment cost and insurance coverage analysis across departments and cities.",
+    points:["$3.36M billing, $2.63M treatment cost, $2.23M insurance-covered",
+            "Star-schema with Visits as the central fact table",
+            "Department, procedure, diagnosis and geographic views"],
+    link:"https://github.com/Rifat250/Healthcare-PowerBI-Dashboard", img:"images/healthcare.jpg" },
+  { title:"Superstore Sales Performance", tool:"Excel", cat:"Excel", emoji:"🛒",
+    desc:"Sales and regional performance dashboard built from transactional retail data.",
+    points:["$2.30M sales and $286K profit by region, state, city and category",
+            "November peak ($352K); Phones top sub-category (~$330K)",
+            "Standard Class shipping = 60% of orders"],
+    link:"https://github.com/Rifat250/Superstore-Sales-Overview-EXCEL-Dashboard", img:"images/superstore.jpg" },
+  { title:"Customer Insights & Retention", tool:"Excel", cat:"Excel", emoji:"📊",
+    desc:"Customer lifetime value, churn risk and retention strategy analysis.",
+    points:["Segments customers by region, category and retention strategy",
+            "Flags high-value and at-risk segments",
+            "Higher purchase frequency linked to lower churn risk"],
+    link:"https://github.com/Rifat250/customer-insights-dashboard", img:"images/customer-insights.jpg" },
+  { title:"AtliQ Grands Revenue Intelligence", tool:"SQL (MySQL)", cat:"SQL", emoji:"🏨",
+    desc:"Hotel revenue, occupancy and cancellation analysis on 134K+ booking records.",
+    points:["Joins, CTEs and window functions (LAG, RANK)",
+            "ADR, RevPAR, occupancy and MoM growth KPIs",
+            "Flagged under-utilised hotels (~44% vs 57.87% overall occupancy)"],
+    link:"https://github.com/Rifat250/atliq-grands-revenue-intelligence-sql", img:"images/atliq-grands.jpg" },
+  { title:"Pizza Sales Performance", tool:"Power BI · DAX", cat:"Power BI", emoji:"🍕",
+    desc:"Sales KPIs, demand trends and best/worst sellers for a pizza business.",
+    points:["$817.86K revenue from 21.35K orders, $38.31 average order value",
+            "Orders peak on Thursday and Friday",
+            "Top 5 / bottom 5 product analysis"],
+    link:"https://github.com/Rifat250/Pizza-Sales-Report-PowerBI-Dashboard", img:"images/pizza-sales.jpg" },
+  { title:"Employee Attendance Automation System", tool:"Google Sheets · Macros", cat:"Google Sheets", emoji:"🗓️",
+    desc:"Automated attendance recording and MIS reporting system in Google Sheets.",
+    points:["Entry form with XLOOKUP employee lookup and one-click macro submission",
+            "Automatic work-hour, late-minute, overtime and status calculation",
+            "KPI dashboard for department-wise management review"],
+    link:"https://github.com/Rifat250/employee-attendance-automation-system-google-sheets", img:"images/employee-attendance.jpg" },
+];
+</script>
+<!-- ========================================================= -->
+
+<nav>
+  <div class="wrap">
+    <a href="#top" class="brand"><div class="logo" id="logo">MR</div><div><span id="navName">Maksud-Ur-Rashid</span><small>Data Analytics</small></div></a>
+    <div class="links" id="links">
+      <a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#process">Process</a><a href="#about">About</a><a href="#certifications" id="certNav" style="display:none">Certifications</a><a href="#contact">Contact</a>
+    </div>
+    <a class="btn btn-ghost" id="cvBtn" href="#contact">Get in touch</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="badge"><span class="dot"></span> Open to opportunities</span>
+      <h1>Hi, I'm <span id="heroName">Maksud-Ur-Rashid</span></h1>
+      <p>A Mathematics graduate who turns raw business data into clear dashboards, KPI scorecards and MIS reports. I work with <strong>Advanced Excel, Power BI, SQL, Google Sheets</strong> and <strong>Python</strong> to clean, model and analyse data, and to explain what it means for decisions.</p>
+      <div class="cta">
+        <a href="#projects" class="btn btn-primary">View My Projects →</a>
+        <a href="#contact" class="btn btn-ghost">Contact Me</a>
+      </div>
+      <div class="socials" id="socials"></div>
+    </div>
+    <div class="photo-card reveal">
+      <div class="photo" id="photo">MR</div>
+      <h3 id="cardName">Maksud-Ur-Rashid</h3>
+      <p>Dhaka, Bangladesh</p>
+      <div class="stats">
+        <div><b id="projCount">6+</b><span>Projects</span></div>
+        <div><b>134K+</b><span>Rows in SQL</span></div>
+        <div><b>7</b><span>Certificates</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="eyebrow">Capabilities</div>
+    <h2>Skills & Tools</h2>
+    <p class="lead">The stack I use to move from raw data to a report people can act on.</p>
+    <div class="grid skills">
+      <div class="card reveal"><div class="icon">📗</div><h3>Advanced Excel</h3><p>Data cleaning, PivotTables, lookups, Power Query and formula-based report automation.</p><div class="tags"><span class="tag">Pivot Tables</span><span class="tag">XLOOKUP</span><span class="tag">Power Query</span><span class="tag">Power Pivot</span><span class="tag">Slicers</span></div></div>
+      <div class="card reveal"><div class="icon">📈</div><h3>Power BI</h3><p>Star-schema modelling, DAX measures and interactive management dashboards.</p><div class="tags"><span class="tag">DAX</span><span class="tag">Time Intelligence</span><span class="tag">Star Schema</span><span class="tag">What-if</span><span class="tag">Financial Analysis</span></div></div>
+      <div class="card reveal"><div class="icon">🗄️</div><h3>SQL</h3><p>Querying, joining and aggregating data to answer business questions.</p><div class="tags"><span class="tag">MySQL</span><span class="tag">SQL Server</span><span class="tag">PostgreSQL</span><span class="tag">BigQuery</span><span class="tag">Snowflake</span><span class="tag">Window Functions</span></div></div>
+      <div class="card reveal"><div class="icon">🐍</div><h3>Google Sheets & Python</h3><p>Sheets dashboards and automation; Python for cleaning and exploratory analysis.</p><div class="tags"><span class="tag">Google Sheets</span><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Matplotlib</span></div></div>
+      <div class="card reveal"><div class="icon">💹</div><h3>Sales & Customer Analytics</h3><p>Revenue, profit and territory performance, growth trends and customer behaviour.</p><div class="tags"><span class="tag">MoM / YoY</span><span class="tag">Variance</span><span class="tag">Segmentation</span><span class="tag">LTV & Churn</span></div></div>
+      <div class="card reveal"><div class="icon">📐</div><h3>BI, MIS & Automation</h3><p>KPI scorecards, data validation and recurring reports; Metabase dashboards and n8n workflow automation.</p><div class="tags"><span class="tag">KPI Scorecards</span><span class="tag">Data Validation</span><span class="tag">Metabase</span><span class="tag">n8n</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="alt">
+  <div class="wrap">
+    <div class="eyebrow">Portfolio</div>
+    <h2>Featured Projects</h2>
+    <p class="lead">Dashboards and workbooks built end-to-end, from raw data to business-ready reporting.</p>
+    <div class="filters" id="filters"></div>
+    <div class="grid projects" id="projectGrid"></div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="eyebrow">Process</div>
+    <h2>How I Work</h2>
+    <p class="lead">The pipeline every project moves through.</p>
+    <div class="grid process">
+      <div class="card reveal"><div class="step-num">01</div><h3>Understand</h3><p>Clarify the business question and the KPIs that answer it.</p></div>
+      <div class="card reveal"><div class="step-num">02</div><h3>Clean</h3><p>Fix missing values, duplicates and formats so the data can be trusted.</p></div>
+      <div class="card reveal"><div class="step-num">03</div><h3>Analyse</h3><p>Model, aggregate and explore to find trends and outliers.</p></div>
+      <div class="card reveal"><div class="step-num">04</div><h3>Visualise</h3><p>Build clear dashboards focused on what decision-makers need.</p></div>
+      <div class="card reveal"><div class="step-num">05</div><h3>Communicate</h3><p>Summarise findings and recommendations in plain language.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="alt">
+  <div class="wrap">
+    <div class="eyebrow">About Me</div>
+    <h2>Math-trained, dashboard-driven</h2>
+    <div class="about">
+      <div class="reveal">
+        <p>I studied Mathematics and later Development Policy at Khulna University. That combination gave me a habit of looking at numbers carefully and asking what they mean for real people and real decisions.</p>
+        <p>Today I build end-to-end analytics projects across sales, customer, healthcare and hospitality data: cleaning and reconciling raw files, designing data models, writing DAX and SQL, and turning the results into dashboards and MIS reports a manager can read at a glance.</p>
+        <p>I'm looking to join a team as a Data Analyst, Business Analyst, BI or MIS professional, where accurate reporting and clear insights help people make better decisions.</p>
+      </div>
+      <div class="timeline reveal">
+        <div class="tl"><div class="yr">2018</div><h4>MSS in Development Policy and Studies</h4><p>Khulna University · CGPA 3.73 / 4.00</p></div>
+        <div class="tl"><div class="yr">2015</div><h4>BSc in Mathematics</h4><p>Khulna University · CGPA 3.47 / 4.00</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certifications" style="display:none">
+  <div class="wrap">
+    <div class="eyebrow">Credentials</div>
+    <h2>Certifications</h2>
+    <p class="lead">Courses and skill certifications that back up the work above.</p>
+    <div class="grid projects" id="certGrid"></div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="eyebrow">Let's Work Together</div>
+    <h2>Open to Data Analyst, BI & MIS roles</h2>
+    <p class="lead">I'm open to full-time opportunities, freelance dashboard work and networking. Reach out any time.</p>
+    <div class="cta" id="contactBtns"></div>
+  </div>
+</section>
+
+<footer>© <span id="year"></span> <span id="footName">Maksud-Ur-Rashid</span> · Built with HTML & CSS · Hosted on GitHub Pages</footer>
+
+<script>
+const icons = {
+  github:'<svg viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>',
+  linkedin:'<svg viewBox="0 0 24 24"><path d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.4V9h3.4v1.6c.5-.9 1.6-1.8 3.4-1.8 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zm1.8 13.1H3.6V9h3.5v11.5zM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 .9.8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7C24 .8 23.2 0 22.2 0z"/></svg>',
+  mail:'<svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>',
+  whatsapp:'<svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1l-.9 1.2c-.2.2-.3.2-.6.1a8 8 0 0 1-4-3.5c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6a1.1 1.1 0 0 0-.8.4 3.4 3.4 0 0 0-1 2.5c0 1.5 1.1 2.9 1.2 3.1.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.6.7.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4l-.8-.5zM12 21.8a9.8 9.8 0 0 1-5-1.4l-3.7 1 1-3.6A9.8 9.8 0 1 1 12 21.8zM12 0a12 12 0 0 0-10.3 18L0 24l6.2-1.6A12 12 0 1 0 12 0z"/></svg>'
+};
+
+// Fill personal info
+const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+["navName","heroName","cardName","footName"].forEach(id => set(id, ME.name));
+set("logo", ME.initials); set("year", new Date().getFullYear()); set("projCount", PROJECTS.length + "+");
+if (ME.photo) document.getElementById("photo").innerHTML = `<img src="${ME.photo}" alt="${ME.name}">`;
+else set("photo", ME.initials);
+if (ME.cv) { const b = document.getElementById("cvBtn"); b.href = ME.cv; b.textContent = "Download CV"; b.setAttribute("download",""); }
+
+const socials = [
+  ME.github && `<a href="${ME.github}" target="_blank" aria-label="GitHub">${icons.github}</a>`,
+  ME.linkedin && `<a href="${ME.linkedin}" target="_blank" aria-label="LinkedIn">${icons.linkedin}</a>`,
+  ME.email && `<a href="mailto:${ME.email}" aria-label="Email">${icons.mail}</a>`,
+  ME.whatsapp && `<a href="https://wa.me/${ME.whatsapp}" target="_blank" aria-label="WhatsApp">${icons.whatsapp}</a>`
+].filter(Boolean).join("");
+document.getElementById("socials").innerHTML = socials;
+
+document.getElementById("contactBtns").innerHTML =
+  `<a class="btn btn-primary" href="mailto:${ME.email}">Email Me</a>` +
+  (ME.linkedin ? `<a class="btn btn-ghost" href="${ME.linkedin}" target="_blank">Connect on LinkedIn</a>` : "") +
+  `<a class="btn btn-ghost" href="${ME.repo}" target="_blank">See all work on GitHub</a>`;
+
+// Projects + filters
+const colors = {"Power BI":"linear-gradient(135deg,#3b2a05,#5c4209)","Excel":"linear-gradient(135deg,#06331f,#0b5133)","SQL":"linear-gradient(135deg,#0c2a4d,#14427a)","Python":"linear-gradient(135deg,#2a1b4d,#3f2a75)","Google Sheets":"linear-gradient(135deg,#06331f,#0b5133)"};
+const cats = ["All", ...new Set(PROJECTS.map(p => p.cat))];
+const filters = document.getElementById("filters");
+filters.innerHTML = cats.map((c,i) => `<button class="${i===0?'active':''}" data-cat="${c}">${c}</button>`).join("");
+function render(cat){
+  document.getElementById("projectGrid").innerHTML = PROJECTS.filter(p => cat==="All" || p.cat===cat).map(p => `
+    <div class="card proj">
+      <div class="thumb" style="background:${colors[p.cat]||'var(--bg2)'}">${p.img ? `<img src="${p.img}" alt="${p.title}">` : p.emoji}</div>
+      <div class="body">
+        <span class="tool">${p.tool}</span>
+        <h3>${p.title}</h3>
+        <p style="color:var(--muted);font-size:.92rem">${p.desc}</p>
+        <ul>${p.points.map(x => `<li>${x}</li>`).join("")}</ul>
+        <div class="actions"><a href="${p.link}" target="_blank">View on GitHub →</a></div>
+      </div>
+    </div>`).join("");
+}
+filters.addEventListener("click", e => {
+  if (e.target.tagName !== "BUTTON") return;
+  filters.querySelectorAll("button").forEach(b => b.classList.remove("active"));
+  e.target.classList.add("active"); render(e.target.dataset.cat);
+});
+render("All");
+
+// Certifications (shown only when CERTS has items)
+if (CERTS.length) {
+  document.getElementById("certifications").style.display = "";
+  document.getElementById("certNav").style.display = "";
+  document.getElementById("certGrid").innerHTML = CERTS.map(c => `
+    <div class="card proj">
+      <a class="thumb cert-thumb" href="${c.img}" target="_blank"><img src="${c.img}" alt="${c.name} certificate" loading="lazy"></a>
+      <div class="body">
+        <span class="tool">${c.org}${c.year ? " · " + c.year : ""}</span>
+        <h3>${c.name}</h3>
+        <p style="color:var(--muted);font-size:.9rem">${c.desc}</p>
+        <p class="cred">Credential ID: ${c.id}</p>
+        <div class="actions"><a href="${c.img}" target="_blank">View certificate →</a></div>
+      </div>
+    </div>`).join("");
+}
+
+// Mobile menu
+const links = document.getElementById("links");
+document.getElementById("menuBtn").onclick = () => links.classList.toggle("open");
+links.querySelectorAll("a").forEach(a => a.onclick = () => links.classList.remove("open"));
+
+// Reveal on scroll
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add("show"); }), {threshold:.12});
+document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+</script>
+</body>
+</html>
