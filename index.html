@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maksud-Ur-Rashid — Data Analytics Portfolio</title>
+<title>Maksud-Ur-Rashid — Data Analyst Portfolio</title>
 <meta name="description" content="Maksud-Ur-Rashid — Mathematics graduate building dashboards, KPI scorecards and MIS reports with Excel, Power BI, SQL and Python.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
@@ -110,6 +110,10 @@
   .contact{text-align:center}
   .contact .lead{margin:0 auto}
   .contact .cta{justify-content:center}
+  .contact-info{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 28px;color:var(--muted);font-size:.95rem}
+  .contact-info a{display:inline-flex;align-items:center;gap:8px}
+  .contact-info a:hover{color:var(--accent)}
+  .contact-info svg{width:17px;height:17px;fill:currentColor}
   footer{border-top:1px solid var(--line);padding:26px 0;text-align:center;color:var(--muted);font-size:.85rem}
 
   .reveal{opacity:0;transform:translateY(20px);transition:.6s ease}
@@ -141,6 +145,7 @@ const ME = {
   linkedin: "https://www.linkedin.com/in/maksud-ur-rashid",
   github: "https://github.com/Rifat250",
   whatsapp: "8801701007259",
+  phone: "+880 1701-007259",
   cv: "Maksud-Ur-Rashid-CV.pdf",
   photo: "photo.jpg",
   repo: "https://github.com/Rifat250/Data-Analytics-Projects"
@@ -219,7 +224,7 @@ const PROJECTS = [
 
 <nav>
   <div class="wrap">
-    <a href="#top" class="brand"><div class="logo" id="logo">MR</div><div><span id="navName">Maksud-Ur-Rashid</span><small>Data Analytics</small></div></a>
+    <a href="#top" class="brand"><div class="logo" id="logo">MR</div><div><span id="navName">Maksud-Ur-Rashid</span><small>Data Analyst</small></div></a>
     <div class="links" id="links">
       <a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#process">Process</a><a href="#about">About</a><a href="#certifications" id="certNav" style="display:none">Certifications</a><a href="#contact">Contact</a>
     </div>
@@ -327,6 +332,7 @@ const PROJECTS = [
     <h2>Open to Data Analyst, BI & MIS roles</h2>
     <p class="lead">I'm open to full-time opportunities, freelance dashboard work and networking. Reach out any time.</p>
     <div class="cta" id="contactBtns"></div>
+    <div class="contact-info" id="contactInfo"></div>
   </div>
 </section>
 
@@ -337,6 +343,7 @@ const icons = {
   github:'<svg viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>',
   linkedin:'<svg viewBox="0 0 24 24"><path d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.4V9h3.4v1.6c.5-.9 1.6-1.8 3.4-1.8 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zm1.8 13.1H3.6V9h3.5v11.5zM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 .9.8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7C24 .8 23.2 0 22.2 0z"/></svg>',
   mail:'<svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>',
+  phone:'<svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>',
   whatsapp:'<svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1l-.9 1.2c-.2.2-.3.2-.6.1a8 8 0 0 1-4-3.5c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6a1.1 1.1 0 0 0-.8.4 3.4 3.4 0 0 0-1 2.5c0 1.5 1.1 2.9 1.2 3.1.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.6.7.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4l-.8-.5zM12 21.8a9.8 9.8 0 0 1-5-1.4l-3.7 1 1-3.6A9.8 9.8 0 1 1 12 21.8zM12 0a12 12 0 0 0-10.3 18L0 24l6.2-1.6A12 12 0 1 0 12 0z"/></svg>'
 };
 
@@ -352,6 +359,7 @@ const socials = [
   ME.github && `<a href="${ME.github}" target="_blank" aria-label="GitHub">${icons.github}</a>`,
   ME.linkedin && `<a href="${ME.linkedin}" target="_blank" aria-label="LinkedIn">${icons.linkedin}</a>`,
   ME.email && `<a href="mailto:${ME.email}" aria-label="Email">${icons.mail}</a>`,
+  ME.phone && `<a href="tel:${ME.phone.replace(/[^+\d]/g,"")}" aria-label="Phone">${icons.phone}</a>`,
   ME.whatsapp && `<a href="https://wa.me/${ME.whatsapp}" target="_blank" aria-label="WhatsApp">${icons.whatsapp}</a>`
 ].filter(Boolean).join("");
 document.getElementById("socials").innerHTML = socials;
@@ -360,6 +368,11 @@ document.getElementById("contactBtns").innerHTML =
   `<a class="btn btn-primary" href="mailto:${ME.email}">Email Me</a>` +
   (ME.linkedin ? `<a class="btn btn-ghost" href="${ME.linkedin}" target="_blank">Connect on LinkedIn</a>` : "") +
   `<a class="btn btn-ghost" href="${ME.repo}" target="_blank">See all work on GitHub</a>`;
+document.getElementById("contactInfo").innerHTML =
+  (ME.phone ? `<a href="tel:${ME.phone.replace(/[^+\d]/g,"")}">${icons.phone}${ME.phone}</a>` : "") +
+  (ME.whatsapp ? `<a href="https://wa.me/${ME.whatsapp}" target="_blank">${icons.whatsapp}WhatsApp</a>` : "") +
+  `<a href="mailto:${ME.email}">${icons.mail}${ME.email}</a>` +
+  `<span>📍 ${ME.location}</span>`;
 
 // Projects + filters
 const colors = {"Power BI":"linear-gradient(135deg,#3b2a05,#5c4209)","Excel":"linear-gradient(135deg,#06331f,#0b5133)","SQL":"linear-gradient(135deg,#0c2a4d,#14427a)","Python":"linear-gradient(135deg,#2a1b4d,#3f2a75)","Google Sheets":"linear-gradient(135deg,#06331f,#0b5133)"};
