@@ -63,13 +63,14 @@
 
   /* SKILLS */
   .grid{display:grid;gap:18px;margin-top:40px}
-  .skills{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+  .skills{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
   .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;transition:.25s}
   .card:hover{border-color:rgba(56,189,248,.5);transform:translateY(-3px)}
   .icon{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-size:1.4rem;background:rgba(56,189,248,.12);margin-bottom:14px}
   .card h3{font-size:1.1rem;margin-bottom:6px}
   .card p{color:var(--muted);font-size:.92rem}
   .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+  .level{display:block;font-family:"JetBrains Mono",monospace;font-size:.72rem;color:var(--accent2);margin:-2px 0 8px}
   .tag{font-size:.75rem;padding:4px 10px;border-radius:999px;background:var(--bg2);border:1px solid var(--line);color:var(--muted)}
 
   /* PROJECTS */
@@ -264,12 +265,12 @@ const PROJECTS = [
     <h2>Skills & Tools</h2>
     <p class="lead">The stack I use to move from raw data to a report people can act on.</p>
     <div class="grid skills">
-      <div class="card reveal"><div class="icon">📗</div><h3>Advanced Excel</h3><p>Data cleaning, PivotTables, lookups, Power Query and formula-based report automation.</p><div class="tags"><span class="tag">Pivot Tables</span><span class="tag">XLOOKUP</span><span class="tag">Power Query</span><span class="tag">Power Pivot</span><span class="tag">Slicers</span></div></div>
-      <div class="card reveal"><div class="icon">📈</div><h3>Power BI</h3><p>Star-schema modelling, DAX measures and interactive management dashboards.</p><div class="tags"><span class="tag">DAX</span><span class="tag">Time Intelligence</span><span class="tag">Star Schema</span><span class="tag">What-if</span><span class="tag">Financial Analysis</span></div></div>
-      <div class="card reveal"><div class="icon">🗄️</div><h3>SQL</h3><p>Querying, joining and aggregating data to answer business questions.</p><div class="tags"><span class="tag">MySQL</span><span class="tag">SQL Server</span><span class="tag">PostgreSQL</span><span class="tag">BigQuery</span><span class="tag">Snowflake</span><span class="tag">Window Functions</span></div></div>
-      <div class="card reveal"><div class="icon">🐍</div><h3>Google Sheets & Python</h3><p>Sheets dashboards and automation; Python for cleaning and exploratory analysis.</p><div class="tags"><span class="tag">Google Sheets</span><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Matplotlib</span></div></div>
-      <div class="card reveal"><div class="icon">💹</div><h3>Sales & Customer Analytics</h3><p>Revenue, profit and territory performance, growth trends and customer behaviour.</p><div class="tags"><span class="tag">MoM / YoY</span><span class="tag">Variance</span><span class="tag">Segmentation</span><span class="tag">LTV & Churn</span></div></div>
-      <div class="card reveal"><div class="icon">📐</div><h3>BI, MIS & Automation</h3><p>KPI scorecards, data validation and recurring reports; Metabase dashboards and n8n workflow automation.</p><div class="tags"><span class="tag">KPI Scorecards</span><span class="tag">Data Validation</span><span class="tag">Metabase</span><span class="tag">n8n</span></div></div>
+      <div class="card reveal"><div class="icon">📗</div><h3>Excel & Google Sheets</h3><span class="level">Intermediate to Advanced</span><p>Cleaning raw data, building KPI dashboards and automating recurring MIS reports.</p><div class="tags"><span class="tag">PivotTables</span><span class="tag">Power Query</span><span class="tag">Power Pivot</span><span class="tag">XLOOKUP / VLOOKUP</span><span class="tag">Slicers</span><span class="tag">Conditional Formatting</span><span class="tag">KPI Dashboards</span><span class="tag">MIS Reporting</span><span class="tag">Data Cleaning</span></div></div>
+      <div class="card reveal"><div class="icon">🗄️</div><h3>SQL</h3><span class="level">MySQL · SQL Server · PostgreSQL · Snowflake · BigQuery</span><p>Querying, cleaning and transforming data with ETL-style pipelines to answer business questions.</p><div class="tags"><span class="tag">Joins</span><span class="tag">Subqueries</span><span class="tag">CTEs</span><span class="tag">Window Functions</span><span class="tag">Data Cleaning</span><span class="tag">ETL</span><span class="tag">Reporting</span></div></div>
+      <div class="card reveal"><div class="icon">📈</div><h3>Power BI</h3><p>Turning cleaned data into interactive reports with star-schema models and DAX.</p><div class="tags"><span class="tag">Power Query (ETL)</span><span class="tag">Data Modeling</span><span class="tag">DAX</span><span class="tag">Time Intelligence</span><span class="tag">Interactive Reports</span></div></div>
+      <div class="card reveal"><div class="icon">📊</div><h3>Metabase</h3><p>SQL-based dashboards for tracking KPIs and day-to-day business reporting.</p><div class="tags"><span class="tag">SQL Dashboards</span><span class="tag">KPI Tracking</span><span class="tag">Business Reporting</span></div></div>
+      <div class="card reveal"><div class="icon">🐍</div><h3>Python</h3><p>Data cleaning, exploratory data analysis (EDA) and visualization.</p><div class="tags"><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Matplotlib</span><span class="tag">EDA</span><span class="tag">Data Cleaning</span><span class="tag">Visualization</span></div></div>
+      <div class="card reveal"><div class="icon">📐</div><h3>Statistics</h3><p>A mathematics foundation for reading data correctly and spotting real trends.</p><div class="tags"><span class="tag">Descriptive Statistics</span><span class="tag">Trend Analysis</span><span class="tag">Hypothesis Testing</span><span class="tag">EDA</span></div></div>
     </div>
   </div>
 </section>
@@ -291,8 +292,8 @@ const PROJECTS = [
     <p class="lead">The pipeline every project moves through.</p>
     <div class="grid process">
       <div class="card reveal"><div class="step-num">01</div><h3>Understand</h3><p>Clarify the business question and the KPIs that answer it.</p></div>
-      <div class="card reveal"><div class="step-num">02</div><h3>Clean</h3><p>Fix missing values, duplicates and formats so the data can be trusted.</p></div>
-      <div class="card reveal"><div class="step-num">03</div><h3>Analyse</h3><p>Model, aggregate and explore to find trends and outliers.</p></div>
+      <div class="card reveal"><div class="step-num">02</div><h3>Extract & Clean</h3><p>Pull data from multiple sources and run ETL steps to fix missing values, duplicates and formats so the data can be trusted.</p></div>
+      <div class="card reveal"><div class="step-num">03</div><h3>Analyse</h3><p>Model the data and run exploratory data analysis (EDA) to find trends, patterns and outliers.</p></div>
       <div class="card reveal"><div class="step-num">04</div><h3>Visualise</h3><p>Build clear dashboards focused on what decision-makers need.</p></div>
       <div class="card reveal"><div class="step-num">05</div><h3>Communicate</h3><p>Summarise findings and recommendations in plain language.</p></div>
     </div>
